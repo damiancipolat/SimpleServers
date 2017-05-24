@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta charset="UTF-8"></meta>
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	
+	<script language="javascript">
+		var connection=null;
+		$(function ()
+		{
+			// if user is running mozilla then use it's built-in WebSocket
+			window.WebSocket = window.WebSocket || window.MozWebSocket;
+
+			connection = new WebSocket('ws://127.0.0.1:3000');
+
+			connection.onopen = function ()
+			{
+				$("#txt_estado").html("Conexión abierta");
+			};
+
+			connection.onerror = function (error)
+			{
+				$("#txt_estado").html("Error en la conexión");
+			};
+
+			connection.onmessage = function (message)
+			{				
+				try
+				{
+					$("#txt_lista").html($("#txt_lista").html()+message.data+"<br>");
+				}
+				catch (e)
+				{
+					console.log('This doesn\'t look like a valid JSON: ', message.data);
+					return;
+				}
+			};
+			
+			$("#txt_boton").click(function()
+			{
+				var msj = $("#txt_msj").val();
+				$("#txt_lista").html($("#txt_lista").html()+"Yo:<br>"+msj+"<br>");
+				connection.send(msj);
+				$("#txt_msj").val("");
+			});
+		});	
+	</script>
+</head>
+<body>
+    
+	<div style="background:silver;padding:3px;width:500px;margin:auto;">
+		<div style="text-align:center;">
+			<h3>Sala de chat</h3>
+		</div>
+		<div style="text-align:left;border-top:1px solid black;padding:5px;" id="txt_estado">
+			Sin conexión
+		</div>
+		<div style="text-align:left;border-top:1px solid black;">
+			<div style="margin-top:5px;">
+				&nbsp;<b>Mensajes recibidos</b>
+			</div>
+			<div id="txt_lista" style="background:#F7F8E0;margin:5px;height:250px;padding:3px;word-break: break-all;">
+			</div>
+		</div>
+		<div style="text-align:left;border-top:1px solid black;">
+			<div style="margin-top:5px;">
+				&nbsp;<b>Escriba su mensaje</b>
+			</div>
+			<div style="margin:5px;">
+				<textarea id="txt_msj" style="background:#F7F8E0;width: 482px;height:100px;padding:3px;"></textarea>
+			</div>
+			<div style="margin:8px;">
+				<input type="button" value="Enviar" id="txt_boton">			
+			</div>							
+		</div>		
+	</div>
+	
+	
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "chat_server",
+  "version": "1.0.0",
+  "description": "Simple chat server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Damian Cipolat",
+  "license": "ISC"
+}

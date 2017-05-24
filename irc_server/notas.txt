@@ -1,0 +1,33 @@
+Notas:
+
+Restfull -> api
+Imagens  -> se usa svg ahora.
+
+S3 -> amazon.
+https://aws.amazon.com/es/s3
+http://socket.io/
+
+Instalar socket io:
+npm install socket.io express -save
+
+console.log('Nueva conexion', socket.id);
+Cada vez que recargo la pagina, se crea una nueva conexion con un nuevo ID.
+
+Translate ES6.
+`${socket.id}:${data}` -> Permite usar variables dentro de un string, pensado para templates.
+
+Comandos a implementar:
+/NICK $user $email
+
+/JOIN $channel
+
+/MSG $channel $msg
+
+/LIST -> ver los canales que estan en el servidor.
+
+/PRIV $nick $msg -->envia un msj privado a un usuario.
+
+Reglas:
+	- No podemos estar logeados en dos ventanas a la vez.
+  
+ PATTERNS: PROMISE Y FACTORYS
