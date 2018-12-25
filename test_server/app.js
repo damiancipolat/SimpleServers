@@ -18,6 +18,17 @@ app.get('/test/',(req,res)=>{
   	res.json({"status":"ok","msj":"hola damian"});
 });
 
+//Agrego health
+app.get('/health/',(req,res)=>{
+
+	//Antes, envio los headers para permitir el cross-origin.
+	res.header("Access-Control-Allow-Origin", "*");
+  	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
+  	//Envio la respuesta.
+  	res.json({"status":"ok"});
+});
+
 //Agrego esta ruta, para los casos en que se escribe mal la url para obtener siempre un retorno.
 app.get('*',(req,res)=>{
 	res.json({error:"Servicio inexistente."});
