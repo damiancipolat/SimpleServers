@@ -8,7 +8,7 @@ const server 	 = http.createServer(app);
 const port 		 = 8080;
 
 //Buscar colectivos cercanos a un punto.
-app.get('/test/',(req,res)=>{
+app.get('/hello',(req,res)=>{
 
 	//Antes, envio los headers para permitir el cross-origin.
 	res.header("Access-Control-Allow-Origin", "*");
